@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import reducer from "../../reducers";
 
 function App() {
-  const { token, setToken } = useToken();
+  const { token, setToken, deleteToken } = useToken();
   const store = configureStore({ reducer: reducer });
 
   if (!token) {
@@ -24,11 +24,12 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/todo" element={<ToDoWrapper />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </BrowserRouter>
       </Provider>
+      <button onClick={deleteToken}>Logout</button>
     </div>
   );
 }
